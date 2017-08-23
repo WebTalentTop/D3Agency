@@ -1,0 +1,213 @@
+main{
+    margin-bottom : 64px;
+}
+
+.md-toolbar-bottom{
+    position : fixed;
+    bottom : 0px;
+    color : black;
+    background-color: white !important;
+    box-shadow: 0 -1px 3px 0 rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 2px 1px -1px rgba(0,0,0,.12);
+    height: 64px;
+}
+
+.md-toolbar-tools{
+    background: #ff6f31;
+    /*background-image: url('http://fuse-angular-material.withinpixels.com/assets/images/backgrounds/header-bg.png');*/
+    color: white;
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 2px 1px -1px rgba(0,0,0,.12);
+}
+
+md-input-container .md-errors-spacer{
+    /*margin-top: 10px !important;*/
+    margin: 0 !important;
+    min-height: 0px !important;
+}
+
+md-input-container label{
+    /*margin-top: 10px !important;*/
+    margin-top: 10px !important;
+}
+.md-label-warning{
+    color: red;
+}
+.md-gbody{
+    margin-top: 10px;
+}
+.md-statistics{
+    margin-top: 10px;
+}
+.m-slider{
+    margin-left: 20px;
+    margin-right: 5px;
+    cursor : pointer;
+}
+.md-select-portfolio{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: black;
+}
+.md-select-fondo{
+    margin-top: 15px;
+    margin-bottom: 14px;
+    color: black;
+}
+.md-btn-transaction{
+    min-width: 0px;
+    width: 80%;
+}
+.md-btn-transaction i{
+    /*padding-top: 10px;*/
+}
+.md-label-blackish{
+    padding-top: 4px;
+    padding-left: 20px;
+    color: rgba(0,0,0,0.54);
+    text-align: left;
+    align-content: top;
+}
+.logo-img{
+    width : 90px;
+    margin-left : -20px;
+}
+.logo-img-lg{
+    width : 90px;
+    margin-left : -15px;
+    margin-top : 4px;
+}
+.show{
+    display: block;
+}
+.hide{
+    display: none;
+}
+.md-table-header{
+    margin-top: 10px;
+    height: 50px;
+    width: 100% !important;
+}
+.md-table-back{
+    background-color : #ff6f31;
+    text-align: center;
+    padding-top: 12px;
+    -webkit-box-shadow:inset 0px 0px 0px 1px white;
+    -moz-box-shadow:inset 0px 0px 0px 1px white;
+    box-shadow:inset 0px 0px 0px 1px white;
+}
+.md-table-back div{
+    color : white;
+    cursor : default;
+}
+.md-table-back:focus{
+    outline: none;
+}
+.md-table-header-back{
+    background-color : lightgray;
+    text-align: center;
+    height: 45px;
+    padding-top: 10px;
+}
+.md-table-header-back div, .md-table-header-back i{
+    color : white;
+    cursor : default;
+}
+.md-table-header-back:focus{
+    outline: none;
+}
+.md-table-body-back{
+    background-color : white;
+    text-align: center;
+    padding-top: 12px;
+    height: 50px;
+    cursor: pointer;
+    -webkit-user-select: none; /* Chrome/Safari */        
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+ */
+}
+.md-table-body-back div{
+    color : black;
+}
+.md-table-body-back:focus{
+    outline: none;
+}
+.md-table-row{
+    /* border-top: 1px solid #979595; */
+    border-bottom: 1px solid #AFAEAE;
+}
+.md-expand-table{
+    background-color: white;
+    border-bottom: 1px solid #AFAEAE;
+    display: none;
+}
+.md-expand-table:disabled{
+    border : none !important;
+}
+.md-expand-table div{
+    text-align: left;
+    margin-left: 24px;
+    height: 30px;
+}
+.md-expand-table :last-child{
+    margin-bottom: 20px;
+}
+.md-delete-button{
+    height: 50px;
+    background-color: white;
+}
+.md-delete-button-style{
+    min-width: 100%;
+    padding: 0;
+    margin: 0;
+    margin-top: 4px;
+}
+.md-label-date{
+    color : black;
+    margin-top : 20px;
+    margin-left : 20px;
+}
+.md-number-label{
+    font-size: 16px;
+}
+.md-number-label-text{
+    margin-left: 10px;
+}
+.md-block-second{
+    margin-top: 0px;
+}
+
+
+.tick text{
+    font-size: 16px;
+    stroke: none;
+    fill: black;
+}
+.scatter_tooltip{
+    position : absolute;
+    border : 1px solid #ff6f31;
+    border-radius : 5px;
+    background-color: white;
+    padding : 10px;
+    width: 320px;
+    display: none;
+}
+
+.scatter_title{
+    color: #ff6f31;
+}
+
+.node {
+    border: solid 1px white;
+    font: 14px sans-serif;
+    line-height: 12px;
+    overflow: hidden;
+    position: absolute;
+    text-indent: 2px;
+    font-weight: bold;
+    color:#fff;
+}
+.data-treegraph div{
+    white-space: pre;
+}
+.md-subcontent {
+    height: 160px;
+}

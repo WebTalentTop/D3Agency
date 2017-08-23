@@ -1,0 +1,484 @@
+ok. you see?
+WINDOWS-7S4JGRM (03:09):
+yep
+IMAC-ERRANG.local (03:10):
+so would you explain?
+WINDOWS-7S4JGRM (03:10):
+Please go to server.js
+We will only walk through the code
+I haven't changed any functionality
+You will see new comments
+IMAC-ERRANG.local (03:10):
+yes
+WINDOWS-7S4JGRM (03:10):
+Please correct if anyone is not true
+exactly
+There are a couple of questions there
+IMAC-ERRANG.local (03:11):
+yes
+what is it
+WINDOWS-7S4JGRM (03:11):
+line 94 and 95
+yes
+IMAC-ERRANG.local (03:12):
+ok.
+if param4 is 5 for example.
+it would be string
+"5"
+in this case
+"5" + 8 = 58
+"5" * 1 + 8 = 13
+so that I multiply * 1
+WINDOWS-7S4JGRM (03:12):
+okay
+what would have been the conversion code for number?
+IMAC-ERRANG.local (03:13):
+you mean what?
+WINDOWS-7S4JGRM (03:13):
+number(param4)?
+what would have been the javascript command
+IMAC-ERRANG.local (03:14):
+that would be fine.
+in many cases, variable * 1 is also good.
+WINDOWS-7S4JGRM (03:14):
+ok
+let's move on
+IMAC-ERRANG.local (03:16):
+this is for update
+this is for insert as you know.
+WINDOWS-7S4JGRM (03:17):
+req is the variable used to initialize paramX
+That comes from /buy?
+IMAC-ERRANG.local (03:17):
+yes.
+look at this
+this makes url
+WINDOWS-7S4JGRM (03:18):
+yes
+IMAC-ERRANG.local (03:18):
+this sends request to server.js I think.
+WINDOWS-7S4JGRM (03:18):
+does it actually make a page or is it just a way to store an object?
+IMAC-ERRANG.local (03:19):
+/ symbol is to divide parameters
+WINDOWS-7S4JGRM (03:19):
+can we navigate to it?
+IMAC-ERRANG.local (03:19):
+$rootScope.onBuy
+that is function and
+I linked the function on index.html
+let me explain from first.
+these are +/- buttons
+and it calls onBuy/onSell function which are located in DataCtrl.js
+WINDOWS-7S4JGRM (03:21):
+which creates /buy/...
+and then it's read and inserted/updated in database?
+I lost you for a second there
+please continue
+IMAC-ERRANG.local (03:22):
+ok.
+and eachTmp.title
+that is parameter
+the "buyInfo" is json objects array.
+I inserted many informations for the future.
+but now we use some variables.
+this loop is to find current value and index.
+so at last.
+if user clicks buy button,
+then it collects all informations for update/insert into database
+and sends it into server.js
+server.js is back-end
+that's all.
+does it make sense?
+WINDOWS-7S4JGRM (03:25):
+okay. I think I have understood the basics of that interaction
+Let's go to the top of dataCtrl
+IMAC-ERRANG.local (03:26):
+did you understand this sector?
+ok let me explain again for onBuy function.
+WINDOWS-7S4JGRM (03:26):
+okay
+IMAC-ERRANG.local (03:26):
+there is parameter "name".
+the 'name' paramter would be RF.GloModera
+this sector is for initialize.
+we know only the name.
+WINDOWS-7S4JGRM (03:27):
+yes
+IMAC-ERRANG.local (03:27):
+and current slider date.
+WINDOWS-7S4JGRM (03:27):
+exactly
+IMAC-ERRANG.local (03:28):
+we have to know this value
+2,278
+so that we have to know the index of the date.
+WINDOWS-7S4JGRM (03:28):
+we can reverse from date to index to price
+times units
+IMAC-ERRANG.local (03:29):
+we reverse it on d3line.js
+because d3 supports that feature.
+WINDOWS-7S4JGRM (03:29):
+agreed
+IMAC-ERRANG.local (03:29):
+$rootScope.mainGraphDate has all of the dates information
+so that we can compare the date information
+if it is same as 09/12/2016
+we can get the value information.
+WINDOWS-7S4JGRM (03:30):
+agreed
+IMAC-ERRANG.local (03:31):
+buyInfo.portValue is for portfolio value
+same as $51,013.72
+this loop is to get every 14 fund value
+why I get portfolio value and every funds values?
+I think the future. 
+so that I get all of the information now.
+it would be useful in the future.
+WINDOWS-7S4JGRM (03:32):
+But you're getting the price of the unit or the value (price*units?)
+IMAC-ERRANG.local (03:33):
+price * units 
+that is already calculated on portCtrl.js
+this is in onBuy function.
+onBuy function is called when the user clicks after setting
+WINDOWS-7S4JGRM (03:33):
+agreed
+IMAC-ERRANG.local (03:34):
+this sector is to format date information to upload into database.
+2016-09-05
+WINDOWS-7S4JGRM (03:34):
+Understood. I was thinking how the initial values were set
+IMAC-ERRANG.local (03:34):
+yes
+in the future, the sql queries would be so long.
+so that I initialize all of the data in the dataCtrl.js
+WINDOWS-7S4JGRM (03:35):
+Okay.
+IMAC-ERRANG.local (03:35):
+and do you understand the url?
+shall I explain?
+WINDOWS-7S4JGRM (03:36):
+I think I understand it as a way to define parameters
+That are used on insert/update 
+with http
+My question is if it's really a page, like /ret
+Or is it just a variable?
+IMAC-ERRANG.local (03:37):
+sorry?
+WINDOWS-7S4JGRM (03:37):
+We can now go to localhost:8080/ret
+IMAC-ERRANG.local (03:37):
+I see.
+WINDOWS-7S4JGRM (03:37):
+can we also go to localhost:8080/buy/...
+IMAC-ERRANG.local (03:37):
+/ret has no parameter
+yes of course.
+this is not post request.
+WINDOWS-7S4JGRM (03:38):
+get
+IMAC-ERRANG.local (03:38):
+this is GET request.
+so we can simulate the paramters.
+WINDOWS-7S4JGRM (03:38):
+okay
+Give me a second to look at buy again
+IMAC-ERRANG.local (03:39):
+if we simulate it, it will call this function directly.
+WINDOWS-7S4JGRM (03:40):
+Okay. Let's please go back to the top of dataCtrl
+Please read/verify my comments
+We'll get back to buy but I want to ask a couple of questions before
+IMAC-ERRANG.local (03:41):
+what is it?
+WINDOWS-7S4JGRM (03:41):
+line 8
+yes
+ we're doing a lot in dataCtrl
+I worry about separation of concerns
+IMAC-ERRANG.local (03:42):
+yes that is possible.
+But it will needs more codes than current variables.
+of course, I did not optimize codes.
+WINDOWS-7S4JGRM (03:43):
+understood, functionality first
+IMAC-ERRANG.local (03:43):
+If you need it, then I will optimize and send all of them into other controller
+as you said, I think functionality is first.
+WINDOWS-7S4JGRM (03:44):
+I think we can separate transactions and portfolios into their own controllers
+let's talk a bit about the global variables in lines 11 to 15
+And the tables we have in the database
+Are those comments correct?
+IMAC-ERRANG.local (03:47):
+you understand?
+WINDOWS-7S4JGRM (03:47):
+Does data mean values?
+IMAC-ERRANG.local (03:47):
+ok
+?
+WINDOWS-7S4JGRM (03:48):
+So initially just names?
+IMAC-ERRANG.local (03:48):
+name and every funds value.
+WINDOWS-7S4JGRM (03:48):
+Got it
+IMAC-ERRANG.local (03:48):
+ok
+and let me explain about $rootScope.arr
+that is for draw every funds graph
+if we change the value as 5
+there would be two global variables.
+we have to store original value.
+and we have to store original value * 5
+so $rootScope.arr is the updated value
+original values * 5
+you understand?
+WINDOWS-7S4JGRM (03:50):
+Yes. We stored original values before
+IMAC-ERRANG.local (03:50):
+yes if we change the value 5 to 10
+then we have to calculate by original value.
+the updated value would be stored into $rootScope.arr
+WINDOWS-7S4JGRM (03:50):
+Yes
+IMAC-ERRANG.local (03:50):
+ok.
+WINDOWS-7S4JGRM (03:51):
+If .arr is storing values, it's mixing units and prices
+yes
+IMAC-ERRANG.local (03:52):
+ok
+WINDOWS-7S4JGRM (03:52):
+Let me elaborate there
+TotalData[i].u is number of units of each fund
+correct
+IMAC-ERRANG.local (03:52):
+ok
+WINDOWS-7S4JGRM (03:53):
+wait it is price of unit
+line 47
+.pr_fund
+yes. That's price of fund 
+IMAC-ERRANG.local (03:54):
+yes right.
+WINDOWS-7S4JGRM (03:54):
+u is price of fund at that date
+.arr[i] is therefore price of fund again
+Where are we storing number of units
+?
+IMAC-ERRANG.local (03:55):
+do you mean this?
+WINDOWS-7S4JGRM (03:55):
+nope, i mean the 5 and 10s in our examples
+the number of units bought or sold of each fund
+IMAC-ERRANG.local (03:56):
+it is not saved.
+it is only saved into database
+WINDOWS-7S4JGRM (03:57):
+so if we want to graph the number of units in fund 40 over time, what would we have to do?
+It's not in any global variable?
+IMAC-ERRANG.local (03:57):
+so if user buy 5 and buy 10,
+do you want to save the number 5 and 10?
+WINDOWS-7S4JGRM (03:58):
+Let me expand here
+This is crucial concept we have to get right
+Let's say the number of units starts at zero for all dates
+so a portfolio has no investement in fund 40, for example
+To show something we initialize all of the dates with 1 unit
+that is equivalent to one buy at the start of dates
+and no more transactions
+We are doing that implicitly now, by copying 1 to all dates
+Agreed up to there?
+IMAC-ERRANG.local (04:00):
+yes
+agreed.
+if user clicks buy or sell button, the value would be stored into database.
+WINDOWS-7S4JGRM (04:01):
+Agreed and, as I understand it, the portfolio is updated as if he had purchased that new amount for all dates
+So if he buys 5, the portfolio shows +5 for all dates
+Do you agree that's how it works today?
+IMAC-ERRANG.local (04:02):
+yes 
+look this
+I changed the value 5 to 10
+portfolio graph is changed
+but it's own graphs is not changed.
+because we multiply 10 with all of the value
+WINDOWS-7S4JGRM (04:03):
+correct
+IMAC-ERRANG.local (04:03):
+Yes. I wanted to ask this problem at the first.
+but forgot it.
+WINDOWS-7S4JGRM (04:03):
+Okay
+So what should happen is:
+The buy or sell impacts all units on that date and going forward
+If you change the units on the last date, only that date changes
+If you go back to the start, you change all dates
+If you pick a date in the middle, only the ones to the right change
+the portfolio graph should not change on dates before the slider
+is the funcionality clear?
+IMAC-ERRANG.local (04:05):
+yes.
+and I want to right this specification on upwork again.
+WINDOWS-7S4JGRM (04:05):
+Agreed
+IMAC-ERRANG.local (04:06):
+and I will optimize and add well-description for every functions.
+what is the timeline?
+WINDOWS-7S4JGRM (04:06):
+Great!
+This weekend
+IMAC-ERRANG.local (04:06):
+ok. perfect.
+WINDOWS-7S4JGRM (04:07):
+Let me explain a couple steps more on this functionality
+IMAC-ERRANG.local (04:07):
+I will think about the seperating the buy/sell modules into portCtrl.js
+ok.
+WINDOWS-7S4JGRM (04:07):
+Please do that
+IMAC-ERRANG.local (04:07):
+what si the couple steps?
+WINDOWS-7S4JGRM (04:07):
+We should only store the individual transactions in the database
+That is the most concise way
+We should work out the number of units of each fund from those transactions
+and then calculate value and then update portfolio values
+so let me try simple example
+buy 5 in middle of 2016, buy 10 start of 2017
+two transactions stored in database
+IMAC-ERRANG.local (04:09):
+yes correct
+WINDOWS-7S4JGRM (04:09):
+the number of units should go 0....5...15.....
+the graph of fund 40 should show 0*price40...
+5*price40....10*price40....
+sorrry
+15*price40...
+IMAC-ERRANG.local (04:11):
+then what about the database?
+WINDOWS-7S4JGRM (04:11):
+So database has two transactions, we calculate the rest here
+IMAC-ERRANG.local (04:11):
+5 and 10?
+WINDOWS-7S4JGRM (04:11):
+yes
+IMAC-ERRANG.local (04:11):
+ok.
+WINDOWS-7S4JGRM (04:11):
+0..5...15... is units array for 40
+there is another array *price40 that is used for fund graph
+IMAC-ERRANG.local (04:12):
+no 
+I can use $rootScope.arr
+that would be changed.
+WINDOWS-7S4JGRM (04:12):
+okay
+and there is another array that sums all of those into portfolio value
+yes it will change in many ways
+IMAC-ERRANG.local (04:13):
+then the portfolio graph and every fund graphs would be changed in many way.
+ok. i understand.
+WINDOWS-7S4JGRM (04:14):
+the lines will break now
+for example, from 0 to 5 there will be a spike
+IMAC-ERRANG.local (04:14):
+yes right.
+WINDOWS-7S4JGRM (04:15):
+and another from 5 to 15
+Take into account that people may introduce transactions between two existing transactions
+in the example we have used it's always forward looking
+They may input the transactions in opposite order, or test a new one in between
+Is that case clear?
+IMAC-ERRANG.local (04:17):
+sorry?
+what means the opposite order?
+WINDOWS-7S4JGRM (04:17):
+In the example we used 0, 5 and 10
+IMAC-ERRANG.local (04:17):
+yes
+WINDOWS-7S4JGRM (04:17):
+if you fill it from earliest date you just fill forward
+if they input 10 and then 5 at an earlier date, your calculations may change
+just alerting you of that possiblility
+IMAC-ERRANG.local (04:18):
+I have to calculate by using the date.
+if I bought 10 earlist in 2017.
+and I bought 5 in middle of 2016.
+then must I draw it as 15?
+WINDOWS-7S4JGRM (04:19):
+from earliest 2017 on
+IMAC-ERRANG.local (04:20):
+so the graph will be drawed by following the input sequence.
+right?
+WINDOWS-7S4JGRM (04:20):
+i'd say you have to go through all of the dates and transactions
+I think you have it clear
+It's not complicated, just consider transactions that were input earlier but occur later in the timeline
+IMAC-ERRANG.local (04:22):
+ok. I got it.
+WINDOWS-7S4JGRM (04:22):
+So please summarize the steps you will take
+IMAC-ERRANG.local (04:22):
+first, I have to change current functions and modules and variables.
+this is for optimization for new features.
+WINDOWS-7S4JGRM (04:23):
+agreed
+IMAC-ERRANG.local (04:23):
+second, I have to draw following new algorithms.
+third, considering your above sentences.
+in fact, it will be in second step.
+yes there are some conditions that you said before.
+WINDOWS-7S4JGRM (04:24):
+if you can chart the history of units for each fund, we are on the right path on the second step
+IMAC-ERRANG.local (04:25):
+I have to think more to get the best algorithm.
+the target is clear now.
+WINDOWS-7S4JGRM (04:25):
+okay
+We can worry about portfolio and saver tables and functionality later
+IMAC-ERRANG.local (04:26):
+ok.
+I see.
+WINDOWS-7S4JGRM (04:27):
+you're right that we have to be careful which new arrays we create
+I hesitate to store value arrays
+IMAC-ERRANG.local (04:27):
+before second step, let us confirm somethings again.
+WINDOWS-7S4JGRM (04:27):
+sure
+IMAC-ERRANG.local (04:27):
+at that time, I will have correct algorithm.
+WINDOWS-7S4JGRM (04:27):
+I'm happy to meet after first step
+IMAC-ERRANG.local (04:28):
+me too.
+Thanks.
+WINDOWS-7S4JGRM (04:28):
+Let's confirm times
+I don't want to have you up so late
+IMAC-ERRANG.local (04:28):
+no problem.
+Thanks.
+WINDOWS-7S4JGRM (04:29):
+April 22, 3 pm?
+IMAC-ERRANG.local (04:29):
+on your timezone?
+WINDOWS-7S4JGRM (04:29):
+yes
+30 minutes from now
+IMAC-ERRANG.local (04:30):
+what about 5 pm or later?
+WINDOWS-7S4JGRM (04:30):
+sure 5 pm
+IMAC-ERRANG.local (04:30):
+ok. 
+and would you close current post?
+on upwork?
+WINDOWS-7S4JGRM (04:30):
+use it to cover this chat and new controllers, variables...

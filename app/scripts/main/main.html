@@ -1,0 +1,294 @@
+<div ng-controller="dataCtrl">
+    <!--toolbar, user name and orza-->
+    <header>
+      <md-toolbar layout="row">
+        <div class="md-toolbar-tools" layout="row">
+            <i class="material-icons">face</i>
+            <div><h3>&nbsp;&nbsp;{{loggedUser}}</h3></div>
+            <div flex>Deploy Version</div>
+            <div><h1>Orza&nbsp;&nbsp;</h1></div>
+            <div><img src="./res/WhiteonTransparent.png" class="logo-img-lg">&nbsp;</div>
+        </div>
+      </md-toolbar>
+    </header>
+    <!--controller start-->
+    <main>
+    <div ng-if="isRecRet">
+        <div ng-controller="portCtrl as here" class="md-gbody">
+        <md-toolbar layout="row" class="md-toolbar-bottom">
+            <div layout="row">
+                <md-slider-container>
+                    <md-slider  class="m-slider md-primary" id="date-slider" ng-style="{'width':'{{arr.SliderStyle}}'}" ng-disabled="arr.sliderDisable" ng-model="arr.slider" min="0" max="{{arr.sliderRange}}" aria-label="nav Date" flex></md-slider>
+                </md-slider-container>
+                <label class="md-label-date">{{curDate}}</label>
+            </div>
+        </md-toolbar>
+        <div layout="column">
+            <div layout="column" layout-gt-sm="row">
+                <div flex="100">
+                    <md-card>
+                        <md-card-title style="border-bottom : 1px solid #dadada">
+                            <md-card-title-text>
+                                <span class="md-headline">retorno y riesgo: cambio en últimos 91 días, máxima caída en 7 días</span>
+                            </md-card-title-text>
+                        </md-card-title>
+                        <md-card-content>
+                            <div class="scatter_tooltip" id="scatter_tooltip">
+                                <div class="scatter_title" id="scatter_title">Title1234567889</div>
+                                <div class="scatter_y" id="scatter_y">y : 1.123456</div>                                                            
+                                <div class="scatter_port" id="scatter_port">p : 1.123456</div>
+                                <div class="scatter_x" id="scatter_x">x : 1.123456</div>    
+                            </div>
+                            <div id="scatter_chart">
+                                <d3-lines data="portfolio" datadate="mainGraphDate" sdate="selectedDate"></d3-lines>          
+                            </div>  
+                        </md-card-content>
+                    </md-card>              
+                </div>
+            </div>
+            <div layout="column" layout-gt-md="row">
+                <div flex="25">
+                    <md-card>
+                        <md-card-title style="border-bottom : 1px solid #dadada; color : #ff6f31;">
+                            <md-card-title-text>
+                                <span class="md-headline">escoje portafolio</span>
+                            </md-card-title-text>
+                        </md-card-title>
+                        <md-card-content class="md-subcontent">
+                            <md-input-container class="md-block md-select-portfolio">
+                                <input ng-model="arr.username" type="text" placeholder="" ng-change="onPortfolioChange()" style="text-transform : lowercase" placeholder="Input your portafolio name"></input>
+                            </md-input-container>
+                            <div layout="column" layout-align="start start" class="md-statistics">
+                                <div layout="row"><div class="md-number-label">${{ngScopeVoP}}</div><div class="md-number-label-text">valor actual</div></div>
+                                <div layout="row"><div class="md-number-label">{{ngScopeGoL}}%</div><div class="md-number-label-text">de utilidad sobre valor</div></div>
+                                <div layout="row"><div class="md-number-label">${{ngScopeMax}}</div><div class="md-number-label-text">máxima utilidad</div></div>
+                                <div layout="row"><div class="md-number-label">${{ngScopeMin}}</div><div class="md-number-label-text">mínima utilidad</div></div>
+                                <div layout="row"><div class="md-number-label">{{ngScopeRate}}%</div><div class="md-number-label-text">desde inicio, tasa periodo o anual</div></div>
+                            </div>         
+                        </md-card-content>
+                    </md-card>              
+                </div>
+                <div flex="25">
+                    <md-card>
+                        <md-card-title style="border-bottom : 1px solid #dadada">
+                            <md-card-title-text>
+                                <span class="md-headline">utilidad portafolio en pesos</span>
+                            </md-card-title-text>
+                        </md-card-title>
+                        <md-card-content class="md-subcontent">
+                            <div id="portfolio_chart">
+                                <d3-lines data="portfolio" datadate="mainGraphDate" sdate="selectedDate"></d3-lines>          
+                            </div>  
+                        </md-card-content>
+                    </md-card>              
+                </div>
+                <div flex="25">
+                    <md-card>
+                        <md-card-title style="border-bottom : 1px solid #dadada">
+                            <md-card-title-text>
+                                <span class="md-headline">composición portafolio</span>
+                            </md-card-title-text>
+                        </md-card-title>
+                        <md-card-content class="md-subcontent" id="tree_house">
+                            <div id="tree_chart">
+                                <d3-lines data="portfolio" datadate="mainGraphDate" sdate="selectedDate"></d3-lines>                                      
+                            </div>  
+                        </md-card-content>
+                    </md-card>              
+                </div>
+                <div flex="25">
+                    <md-card>
+                        <md-card-title style="border-bottom : 1px solid #dadada">
+                            <md-card-title-text>
+                                <span class="md-headline">Histogram Chart</span>
+                            </md-card-title-text>
+                        </md-card-title>
+                        <md-card-content class="md-subcontent">
+                            <div id="histogram_chart">
+                                <d3-lines data="portfolio" datadate="mainGraphDate" sdate="selectedDate"></d3-lines>                                      
+                            </div>  
+                        </md-card-content>
+                    </md-card>              
+                </div>
+            </div>
+            <div layout="column" layout-gt-md="row">
+                <div flex="25">
+                    <md-card>
+                        <md-card-title style="border-bottom : 1px solid #dadada; color : #ff6f31;">
+                            <md-card-title-text>
+                                <span class="md-headline">escoje fondo</span>
+                            </md-card-title-text>
+                        </md-card-title>
+                        <md-card-content class="md-subcontent">
+                            <md-select ng-disabled="arr.sliderDisable" ng-model="arr.selectedFunds" placeholder="Each Funds" class="md-no-underline md-select-fondo" ng-change="optChanged()">
+                                <md-option ng-repeat="eachData in listOfPriceFund" value="{{eachData.name}}">{{eachData.name}}</md-option>
+                            </md-select>
+                            <div layout="column" layout-align="start start" class="md-statistics">
+                                <div layout="row"><div class="md-number-label">{{ngScopeDay91}}%</div><div class="md-number-label-text">en 91 días</div></div>
+                                <div layout="row"><div class="md-number-label">{{ngScopeDay182}}%</div><div class="md-number-label-text">en 182 días</div></div>
+                                <div layout="row"><div class="md-number-label">{{ngScopeDay365}}%</div><div class="md-number-label-text">en 365 días</div></div>
+                                <div layout="row"><div class="md-number-label">{{ngScopeYear}}%</div><div class="md-number-label-text">desde inicio, tasa periodo o anual</div></div>
+                            </div>         
+                        </md-card-content>
+                    </md-card>              
+                </div>
+                <div flex="50">
+                    <md-card>
+                        <md-card-title style="border-bottom : 1px solid #dadada">
+                            <md-card-title-text>
+                                <span class="md-headline">precio unidad</span>
+                            </md-card-title-text>
+                        </md-card-title>
+                        <md-card-content class="md-subcontent">
+                            <div id="line_extra">
+                                <d3-lines data="orgData" datadate="mainGraphDate" sdate="selectedDate"></d3-lines>
+                            </div>
+                        </md-card-content>
+                    </md-card>              
+                </div>
+                <div flex="25">
+                    <md-card>
+                        <md-card-title style="border-bottom : 1px solid #dadada; color : #ff6f31;">
+                            <md-card-title-text>
+                                <span class="md-headline">comprar o vender</span>
+                            </md-card-title-text>
+                        </md-card-title>
+                        <md-card-content class="md-subcontent">
+                            <div layout = "column">
+                                <div>
+                                    <label class="md-label-warning">{{arr.errModel}}</label>
+                                </div>
+                                <div layout = "row" layout-align="center center">
+                                    <div flex = "60">
+                                        <md-input-container class="md-block">
+                                            <input type="number" ng-model="arr.ngSecondGraphModel" ng-change="unitChanged()" aria-label="buy or sell"></input>
+                                        </md-input-container>
+                                    </div>
+                                    <div flex = "40">
+                                        <div layout = "row" layout-align="left center">
+                                        <md-button ng-click="onBuy()" class="md-btn-transaction md-raised md-primary md-icon-button">
+                                            <span><i class="material-icons">check</i></span>
+                                        </md-button>
+                                        <md-button ng-click="onSell()" class="md-btn-transaction md-raised md-primary md-icon-button">
+                                            <span><i class="material-icons">clear</i></span>
+                                        </md-button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div layout = "row" layout-align="center center">
+                                    <div flex = "60">
+                                        <md-input-container class="md-block md-block-second">
+                                            <input type="number" ng-model="arr.ngSecondGraphMount" ng-change="unitChangedMount()" aria-label="buy or sell"></input>
+                                        </md-input-container>
+                                    </div>
+                                    <div flex = "40"></div>
+                                </div>
+                                <div layout = "column">
+                                    <div>{{ngScopeUnidades}} unidades</div>
+                                    <div>${{ngScopeTranPrice}} pesos</div>                                    
+                                </div>
+                            </div>
+                        </md-card-content>
+                    </md-card>              
+                </div>
+            </div>
+        </div>
+
+        <div class="md-table-header" layout="row">
+            <div flex="{{eachHeader.flex}}" class="md-table-back" ng-click="onTableReorder(eachHeader.index)" ng-repeat="eachHeader in arr.tbHeader">
+                <div layout="row">
+                    <div flex></div>
+                    <div>{{eachHeader.title}}</div>
+                    <div><i class="material-icons">{{eachHeader.icon}}</i></div>
+                    <div flex></div>
+                </div>
+            </div>
+            <div class="md-table-back" flex="{{arr.flex8}}">
+                <div>borrar</div>
+            </div>
+        </div>
+        
+        <div ng-repeat="eachObj in arr.tableInfo">
+            <div>
+                <div class="md-table-header-back" ng-click="onShowHide(eachObj.PortIndex, 1)" layout="row">
+                    <div flex></div>
+                    <div>{{eachObj.Portname}}</div><i class="material-icons">{{eachObj.PortIcon}}</i>
+                    <div flex></div>
+                </div>
+            </div>
+            <div ng-repeat="eachTransaction in eachObj.Portarray">
+                <div layout="row" class="md-table-row">
+                    <div class="md-table-body-back" flex="{{arr.flex1}}" ng-style="arr.styleFlex1" ng-click="onExpand($index)">
+                        <div id="md-expand-column{{$index}}">{{arr.isExpand}}{{eachTransaction.strPortID}}</div>
+                    </div>
+                    <div class="md-table-body-back" flex="{{arr.flex2}}" ng-style="arr.styleFlex2">
+                        <div>{{eachTransaction.tDate}}</div>
+                    </div>
+                    <div class="md-table-body-back" flex="{{arr.flex3}}" ng-style="arr.styleFlex3">
+                        <div>{{eachTransaction.strFundName}}</div>
+                    </div>
+                    <div class="md-table-body-back" flex="{{arr.flex4}}" ng-style="arr.styleFlex4">  
+                        <div>{{eachTransaction.strBoS}}</div>
+                    </div>
+                    <div class="md-table-body-back" flex="{{arr.flex5}}" ng-style="arr.styleFlex5">
+                        <div>{{eachTransaction.str_nItemCnt}}</div>
+                    </div>
+                    <div class="md-table-body-back" flex="{{arr.flex6}}" ng-style="arr.styleFlex6">
+                        <div>${{eachTransaction.str_fItemValue}}</div>
+                    </div>
+                    <div class="md-table-body-back" flex="{{arr.flex7}}" ng-style="arr.styleFlex7">  
+                        <div>${{eachTransaction.str_fTotal}}</div>
+                    </div>
+                    <div class="md-delete-button" flex="{{arr.flex8}}">
+                        <md-button class="md-delete-button-style" layout="row" layout-align="center center" ng-click="onDelete(eachTransaction)" ng-disabled="{{eachTransaction.deletable}}"><i class="material-icons">clear</i></md-button>
+                    </div>
+                </div>
+                <div class="md-expand-table" layout="column" ng-style="arr.styleExpand" id="md-expand-table{{$index}}">
+                    <div class="md-table-body-back" ng-style="arr.styleExpand1">
+                        <div><b>- fondo:</b> {{eachTransaction.strFundName}}</div>
+                    </div>
+                    <div class="md-table-body-back" ng-style="arr.styleExpand2">  
+                        <div><b>- compra o venta:</b> {{eachTransaction.strBoS}}</div>
+                    </div>
+                    <div class="md-table-body-back" ng-style="arr.styleExpand3">
+                        <div><b>- unidades:</b> {{eachTransaction.str_nItemCnt}}</div>
+                    </div>
+                    <div class="md-table-body-back" ng-style="arr.styleExpand4">
+                        <div><b>- precio unidad:</b> ${{eachTransaction.str_fItemValue}}</div>
+                    </div>
+                    <div class="md-table-body-back" ng-style="arr.styleExpand5">  
+                        <div><b>- total pesos:</b> ${{eachTransaction.str_fTotal}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <md-grid-list md-cols-xs="12" md-cols-sm="12" md-cols-md="12" md-cols-lg="12" md-cols-xl="12"
+                      md-row-height-xs="45px" md-row-height-sm="45px" md-row-height-md="45px" md-row-height-lg="45px" md-row-height-xl="45px"
+                      >
+            <md-grid-tile class="md-table-body-back" md-colspan-xs="2" md-colspan-sm="2" md-colspan-md="2" md-colspan-lg="2" md-colspan-xl="2">
+                <div></div>
+            </md-grid-tile>
+            <md-grid-tile class="md-table-body-back" md-colspan-xs="8" md-colspan-sm="8" md-colspan-md="8" md-colspan-lg="8" md-colspan-xl="8">
+                <md-button layout="row" ng-click="onUpload()"><i class="material-icons">file_upload</i>subir transacciones en archivo csv</md-button>
+            </md-grid-tile>
+            <md-grid-tile class="md-table-body-back" md-colspan-xs="2" md-colspan-sm="2" md-colspan-md="2" md-colspan-lg="2" md-colspan-xl="2">        
+                <input type="file" id="file" name="file" style="display:none;" ng-model="arr.ngScopeFilePath" accept=".csv" files-input/>
+            </md-grid-tile>
+        </md-grid-list>
+        <md-grid-list md-cols-xs="12" md-cols-sm="12" md-cols-md="12" md-cols-lg="12" md-cols-xl="12"
+                      md-row-height-xs="45px" md-row-height-sm="45px" md-row-height-md="45px" md-row-height-lg="45px" md-row-height-xl="45px"
+                      >
+            <md-grid-tile class="md-table-body-back" md-colspan-xs="2" md-colspan-sm="2" md-colspan-md="2" md-colspan-lg="2" md-colspan-xl="2">
+                <div></div>
+            </md-grid-tile>
+            <md-grid-tile class="md-table-body-back" md-colspan-xs="8" md-colspan-sm="8" md-colspan-md="8" md-colspan-lg="8" md-colspan-xl="8">
+                <md-button layout="row" ng-click="onDownload()"><i class="material-icons">file_download</i>bajar plantilla en archivo csv</md-button>
+            </md-grid-tile>
+            <md-grid-tile class="md-table-body-back" md-colspan-xs="2" md-colspan-sm="2" md-colspan-md="2" md-colspan-lg="2" md-colspan-xl="2">
+                <a target="_self" href="./s302kd02.csv" download="Template.csv" id="download" style="display:none">download</a>
+            </md-grid-tile>
+        </md-grid-list>
+    </div>
+    </main>
+</div>
